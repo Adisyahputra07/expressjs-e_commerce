@@ -1,0 +1,31 @@
+{{>bootstrap}}
+{{>navbar}}
+<div class="container" style="margin-top: 30px">
+  <section id="mobil">
+        <div class="container">
+          <div class="row mt-1">
+            <div class="col">
+              <h3>EX COFFEE</h3>
+            </div>
+          </div>
+          {{#if datas}}
+          <div class="row">
+            {{#each datas}}
+            <div class="col-3 mt-4">
+              <div class="card" style="border-radius:13px;">
+                <img src="../public/img/copy.png" class="card-img-top" alt="bmw" />
+                <div class="card-body">
+                  <h5 class="card-title">{{this.name}}</h5>
+                  <p class="card-text">Price: {{this.price}}</p>
+                  <a href="/edit-product/{{this.id}}" id="{{this.id}}" class="btn badge bg-dark">Edit</a>
+                  <a href="/add-product" id="{{this.id}}" class="btn badge bg-dark">Add</a>
+                  <a href="/delete-product/{{this.id}}" id="{{this.id}}" onclick="return alert('Are You Sure ?')" class="btn badge bg-danger">Delete</a>
+                </div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+          {{/if}}
+        </div>
+  </section>
+</div>

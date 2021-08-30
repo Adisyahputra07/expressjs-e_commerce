@@ -1,0 +1,43 @@
+{{>bootstrap}}
+{{>navbar}}
+
+{{#if emailAlready}}
+<div class="alert alert-danger" role="alert">
+  Email {{email}} Sudah terdaftar
+</div>
+{{/if}}
+
+{{#if success}}
+<div class="alert alert-success" role="alert">
+ Register Succses
+</div>
+{{/if}}
+
+
+<div class="container mt-5 p-4">
+  <form action="/proses-register" method="POST">
+    <div class="form-floating mb-3">
+      <input type="email" class="form-control" name="email" value="{{email}}">
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" name="password" value="{{password}}">
+      <label for="floatingPassword">Password</label>
+    </div>
+    <div class="form-floating mt-3" >
+      <select class="form-select p-3" name="status" >
+        <option selected>Choose Status...</option>
+        <option value="1">User</option>
+        <option value="2">Admin</option>
+      </select>
+    </div>
+    <div class="form-floating mt-3">
+      <input type="address" class="form-control" name="address" value="{{address}}">
+      <label for="floatingInput">Address</label>
+    </div>
+    <div style="margin: 10px auto; display:flex; justify-content:center">
+      <button type="submit" class="btn btn-success">Register</button>
+    </div>
+  </form>
+</div>
+

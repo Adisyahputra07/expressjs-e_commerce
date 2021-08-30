@@ -1,0 +1,38 @@
+{{>bootstrap}}
+{{>navbar}}
+
+{{#if error}}
+<div class="alert alert-danger" role="alert">
+ Please enter complete product data
+</div>
+{{/if}}
+
+<div class="container mt-5 p-4">
+  <form action="/proses-addProduct" method="POST">
+    <div class="form-floating mb-3">
+      <input type="text" name="name" class="form-control" value="{{name}}" placeholder="Name">
+      <label for="floatingInput">Name</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="text" name="description" class="form-control" value="{{description}}" placeholder="Description">
+      <label for="floatingInput">Description</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="number" name="price" class="form-control" value="{{price}}" placeholder="Price">
+      <label for="floatingInput">Price</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="file" name="photo" class="form-control" value="{{photo}}" placeholder="Photo" >
+      <label for="floatingInput" style="padding: 13px;">Photo</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="number" name="stock" class="form-control" value="{{stock}}" placeholder="Stock">
+      <label for="floatingInput">stock</label>
+    </div>
+    <div style="margin: 10px auto; display:flex; justify-content:center">
+      <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+  </form>
+</div>
+
+
