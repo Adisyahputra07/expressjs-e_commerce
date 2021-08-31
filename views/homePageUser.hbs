@@ -1,3 +1,29 @@
 {{>bootstrap}}
-{{>navbar}}
-<h1>THIS IS PAGE USER</h1>
+{{>navbarUser}}
+<div class="container mt-5 mb-5">
+  <section id="mobil">
+        <div class="container">
+          <div class="row mt-1">
+            <div class="col">
+              <h3>Coffee Express</h3>
+            </div>
+          </div>
+          {{#if datas}}
+          <div class="row">
+            {{#each datas}}
+            <div class="col-3 mt-4">
+              <div class="card" style="border-radius:13px;">
+                <img src="../public/img/copy2.png" class="card-img-top" alt="bmw" />
+                <div class="card-body">
+                  <h5 class="card-title">{{this.name}}</h5>
+                  <p class="card-text">Price: {{this.price}}</p>
+                  <a class="nav-link btn btn-dark" style="color: whitesmoke;" href="#">Buy Now</a>
+                </div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+          {{/if}}
+        </div>
+  </section>
+</div>

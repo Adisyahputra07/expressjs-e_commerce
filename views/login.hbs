@@ -1,5 +1,12 @@
 {{>bootstrap}}
-{{>navbar}}
+{{>navbarPublic}}
+
+{{#if passwordWorng}}
+<div class="alert alert-danger" role="alert">
+  Password Worng
+</div>
+{{/if}}
+
 <div class="container" style="margin: 50px auto;">
   <form action="/proses-login" method="POST">
     <div class="form-floating mb-3">
@@ -11,7 +18,8 @@
        <label for="floatingPassword">Password</label>
     </div>
     <div style="margin: 10px auto; display:flex; justify-content:center">
-      <button type="submit" class="btn btn-primary">Login</button>
+      <button type="submit" class="btn btn-secondary">Login</button>
+      <a class="nav-link" href="/register">Create account</a>
     </div>
   </form>
 </div>
