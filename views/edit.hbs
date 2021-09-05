@@ -1,4 +1,4 @@
-{{>bootstrap}}
+{{>header}}
 {{>navbar}}
 
 {{#if error}}
@@ -21,8 +21,10 @@
       <input type="number" name="price" class="form-control" value="{{price}}">
       <label for="floatingInput">Price</label>
     </div>
+    <div id="preview-photo" class="text-start"></div>
     <div class="form-floating mb-3">
-      <input type="file" name="photo" class="form-control" value="{{photo}}">
+      {{!-- <input type="file" id="file" aria-label="File browser example" name="image" onchange="handleCha()"> --}}
+      <input type="file" name="photo" class="form-control" aria-label="File browser example" onchange="handleChange()">
       <label for="floatingInput" style="padding: 13px;">Photo</label>
     </div>
     <div class="form-floating mb-3">
@@ -46,7 +48,19 @@
     <div style="margin: 10px auto; display:flex; justify-content:center">
       <button type="submit" class="btn btn-success">Edit</button>
     </div>
+        <input type="hidden" value="{{photo}}" id="url-thumbnail">
   </form>
 </div>
 
+<script>
+    const previewElement = document.querySelector("#preview-photo");
+    const urlThumbnail= document.getElementById('url-thumbnail').value;
+    previewElement.innerHTML = `<img src="../uploads/${urlThumbnail}" style="width: 100px; margin-left: 2 0px;" class="mb-3"/>`;
+
+  function handleChange(){
+    const value = URL.createObjectURL(event.target.files[0]);
+    previewElement.innerHTML = `<img src="${value}" style="width: 100px; margin-left: 2 0px;" class="mb-3"/>`
+
+  }
+</script>
 

@@ -1,5 +1,5 @@
-{{>bootstrap}}
-{{>navbarUser}}
+{{>header}}
+{{>navbar}}
 <div class="container mt-5 mb-5">
   <section id="mobil">
         <div class="container">
@@ -13,7 +13,7 @@
             {{#each datas}}
             <div class="col-3 mt-4">
               <div class="card" style="border-radius:13px;">
-                <img src="../public/img/copy2.png" class="card-img-top" alt="bmw" />
+                <img src="../uploads/{{this.photo}}" class="card-img-top" alt="bmw" />
                 <div class="card-body">
                   <h5 class="card-title">{{this.name}}</h5>
                   <p class="card-text">Price: {{this.price}}</p>

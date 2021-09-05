@@ -1,25 +1,33 @@
-{{>bootstrap}}
-{{>navbarUser}}
+{{>header}}
+{{>navbar}}
 <div class="container mt-5 mb-5">
-  <section id="mobil">
+  <section> 
+  <div class="container">
+    <div class="row mt-1">
+      <div class="col-12 align-items-center" >
+      </div>
+    </div>
+  </div>
+</div>
+  </section>
+  <section>
         <div class="container">
           <div class="row mt-1">
             <div class="col">
-              <h3>Coffee Express</h3>
+              <h3>Let's Order</h3>
             </div>
           </div>
           {{#if datas}}
           <div class="row">
             {{#each datas}}
-            <div class="col-3 mt-4">
+            <div class="col-3 mt-2 mb-5">
               <div class="card" style="border-radius:13px;">
-                <img src="../public/img/copy2.png" class="card-img-top" alt="bmw" />
+                <img src="../uploads/{{this.photo}}" class="card-img-top" alt="bmw" />
                 <div class="card-body">
                   <h5 class="card-title">{{this.name}}</h5>
+                  <p class="card-text">Brand: {{this.brand_id}}</p>
                   <p class="card-text">Price: {{this.price}}</p>
-                  <a href="/edit-product/{{this.id}}" id="{{this.id}}" class="btn badge bg-dark">Edit</a>
-                  <a href="/add-product" id="{{this.id}}" class="btn badge bg-dark">Add</a>
-                  <a href="/delete-product/{{this.id}}" id="{{this.id}}" onclick="return alert('Are You Sure ?')" class="btn badge bg-danger">Delete</a>
+                  <a class="nav-link btn btn-dark" style="color: whitesmoke;" href="/login">Buy Now</a>
                 </div>
               </div>
             </div>

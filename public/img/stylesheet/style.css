@@ -1,0 +1,42 @@
+/* NAVBAR */
+
+.nav-brand {
+  font-size: 100px !important;
+}
+
+.avatarr {
+  width: 35px;
+  height: 35px;
+}
+
+.dropdown-toggle {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.nav-item .btn-login {
+  color: #fff;
+  text-decoration: none;
+  border: 2px solid #fff;
+  font-weight: bold;
+  font-size: 14px;
+}
+.nav-item .btn-register {
+  color: #ffffff !important;
+  text-decoration: none;
+  border: 2px solid #393939;
+  font-weight: bold;
+  font-size: 14px;
+  background-color: #393939;
+}
+
+/* index */
+
+.align-items-center {
+  height: 70vh;
+  width: 100%;
+  background-size: 100%;
+  object-fit: cover;
+  background-image: url("/public/img/copy1.png");
+  background-repeat: no-repeat;
+}

@@ -1,5 +1,5 @@
-{{>bootstrap}}
-{{>navbarUser}}
+{{>header}}
+{{>navbar}}
 
 {{#if error}}
 <div class="alert alert-danger" role="alert">
@@ -8,7 +8,7 @@
 {{/if}}
 
 <div class="container mt-5 p-4">
-  <form action="/proses-addProduct" method="POST">
+  <form action="/proses-addProduct" method="POST" enctype="multipart/form-data">
     <div class="form-floating mb-3">
       <input type="text" name="name" class="form-control" value="{{name}}" placeholder="Name">
       <label for="floatingInput">Name</label>
@@ -21,8 +21,9 @@
       <input type="number" name="price" class="form-control" value="{{price}}" placeholder="Price">
       <label for="floatingInput">Price</label>
     </div>
+      <div id="preview-photo"></div>
     <div class="form-floating mb-3">
-      <input type="file" name="photo" class="form-control" value="{{photo}}" placeholder="Photo" >
+      <input type="file" name="photo" class="form-control" value="{{photo}}" placeholder="Photo" onchange="handleChange()" >
       <label for="floatingInput" style="padding: 13px;">Photo</label>
     </div>
     <div class="form-floating mb-3">
@@ -49,4 +50,14 @@
   </form>
 </div>
 
+<script>
+
+  function handleChange(){
+    const previewElement = document.querySelector("#preview-photo");
+    const value = URL.createObjectURL(event.target.files[0]);
+    previewElement.innerHTML = `<img src="${value}" style="width: 100px; margin-left: 2 0px;" class="mb-3"/>`
+
+  }
+  
+</script>
 

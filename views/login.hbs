@@ -1,14 +1,14 @@
-{{>bootstrap}}
-{{>navbarPublic}}
+{{>header}}
+{{>navbar}}
 
-{{#if passwordWorng}}
+{{#if passwordWrong}}
 <div class="alert alert-danger" role="alert">
-  Password Worng
+  Password Or Email Not Match
 </div>
 {{/if}}
 
 <div class="container" style="margin: 50px auto;">
-  <form action="/proses-login" method="POST">
+  <form action="/login" method="POST">
     <div class="form-floating mb-3">
       <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
       <label for="floatingInput">Email address</label>

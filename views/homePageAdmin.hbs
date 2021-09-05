@@ -1,7 +1,7 @@
-{{>bootstrap}}
-{{>navbarPublic}}
+{{>header}}
+{{>navbar}}
 <div class="container mt-5 mb-5">
-  <section id="mobil">
+  <section>
         <div class="container">
           <div class="row mt-1">
             <div class="col">
@@ -13,11 +13,13 @@
             {{#each datas}}
             <div class="col-3 mt-4">
               <div class="card" style="border-radius:13px;">
-                <img src="../public/img/copy2.png" class="card-img-top" alt="bmw" />
+                <img src="../uploads/{{this.photo}}" class="card-img-top" alt="coffe" />
                 <div class="card-body">
                   <h5 class="card-title">{{this.name}}</h5>
+                  <p class="card-text">Brand: {{this.brand_id}}</p>
                   <p class="card-text">Price: {{this.price}}</p>
-                  <a class="nav-link btn btn-dark" style="color: whitesmoke;" href="/login">Buy Now</a>
+                  <a href="/edit-product/{{this.id}}" id="{{this.id}}" class="btn badge bg-dark">Edit</a>
+                  <a href="/delete-product/{{this.id}}" id="{{this.id}}" onclick="return alert('Are You Sure ?')" class="btn badge bg-danger">Delete</a>
                 </div>
               </div>
             </div>
