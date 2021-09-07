@@ -8,7 +8,7 @@
 {{/if}}
 
 <div class="container mt-5 p-4">
-  <form action="/proses-edit/{{id}}" method="POST">
+  <form action="/proses-edit/{{id}}" method="POST" enctype="multipart/form-data">
     <div class="form-floating mb-3">
       <input type="text" name="name" class="form-control" value="{{name}}">
       <label for="floatingInput">Name</label>
@@ -23,8 +23,9 @@
     </div>
     <div id="preview-photo" class="text-start"></div>
     <div class="form-floating mb-3">
+        <input type="hidden" value="{{photo}}" name="oldPhoto">
       {{!-- <input type="file" id="file" aria-label="File browser example" name="image" onchange="handleCha()"> --}}
-      <input type="file" name="photo" class="form-control" aria-label="File browser example" onchange="handleChange()">
+      <input type="file" name="photo" class="form-control" aria-label="File browser example" value="{{photo}}" onchange="handleChange()">
       <label for="floatingInput" style="padding: 13px;">Photo</label>
     </div>
     <div class="form-floating mb-3">

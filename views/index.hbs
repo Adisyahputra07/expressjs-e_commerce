@@ -21,11 +21,11 @@
           <div class="row">
             {{#each datas}}
             <div class="col-3 mt-2 mb-5">
-              <div class="card" style="border-radius:13px;">
+              <div class="card">
                 <img src="../uploads/{{this.photo}}" class="card-img-top" alt="bmw" />
                 <div class="card-body">
                   <h5 class="card-title">{{this.name}}</h5>
-                  <p class="card-text">Brand: {{this.brand_id}}</p>
+                  <p class="card-text">Brand: {{this.brand_name}}</p>
                   <p class="card-text">Price: {{this.price}}</p>
                   <a class="nav-link btn btn-dark" style="color: whitesmoke;" href="/login">Buy Now</a>
                 </div>

@@ -1,7 +1,7 @@
 const multer = require("multer");
 
 module.exports = (imageFile) => {
-  //create file Uploads
+  //create file Upload
   const storage = multer.diskStorage({
     // tempat file yang telah di upload
     destination: function (req, file, cb) {

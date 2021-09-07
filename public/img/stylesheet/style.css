@@ -33,10 +33,27 @@
 /* index */
 
 .align-items-center {
-  height: 70vh;
+  height: 60vh;
   width: 100%;
   background-size: 100%;
   object-fit: cover;
-  background-image: url("/public/img/copy1.png");
+  background-image: url("/public/img/Rectangle\ 3.svg");
   background-repeat: no-repeat;
+  border-radius: 20px;
+}
+
+.card {
+  border-radius: 13px !important;
+}
+
+.card-img-top {
+  background-color: rgb(235, 235, 235);
+  border-top-left-radius: 13px !important;
+  border-top-right-radius: 13px !important;
+}
+
+.card-body {
+  background-color: rgb(235, 235, 235);
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
 }

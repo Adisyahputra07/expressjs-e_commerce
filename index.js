@@ -7,9 +7,6 @@ const port = 3000;
 
 const dbConnection = require("./config/db");
 const uploadFile = require("./middlewares/uploads");
-const uploads = require("./middlewares/uploads");
-
-// const { query } = require("express");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
@@ -37,10 +34,11 @@ app.use(express.urlencoded({ extended: false }));
 
 //READ
 app.get("/", (req, res) => {
-  const query = "SELECT * FROM tb_product ORDER BY id DESC";
+  const query = `SELECT tb_product.id,tb_product.name,description,photo,stock,price, tb_brand.name AS brand_name FROM tb_product INNER JOIN tb_brand ON brand_id = tb_brand.id ORDER BY tb_product.id DESC`;
   dbConnection.query(query, (err, rows) => {
     let data;
     if (err) throw err;
+
     if (rows.length === 0) {
       console.log("data Kosong");
       data = "";
@@ -62,14 +60,13 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
-let coockie;
 // THIS AFTER LOGIN
 app.post("/login", (req, res) => {
   let { email, password } = req.body;
   let query = `SELECT *, MD5(password) as password FROM tb_user WHERE email = '${email}' AND password = '${password}'`;
+
   dbConnection.query(query, (err, rows) => {
     if (err) throw err;
-    console.log(rows);
 
     if (rows.length === 0) {
       return res.render("login", {
@@ -85,9 +82,6 @@ app.post("/login", (req, res) => {
       status: rows[0].status,
     };
 
-    coockie = req.session.user;
-    console.log("asede", coockie.email);
-
     if (rows[0].status === "1") {
       res.redirect("/homePage-user");
     } else {
@@ -98,33 +92,30 @@ app.post("/login", (req, res) => {
 
 // HOME PAGE USER
 app.get("/homePage-user", (req, res) => {
-  const query = "SELECT * FROM tb_product ORDER BY id DESC";
+  const query = `SELECT tb_product.id,tb_product.name,description,photo,stock,price, tb_brand.name AS brand_name FROM tb_product INNER JOIN tb_brand ON brand_id = tb_brand.id ORDER BY tb_product.id DESC`;
+
   dbConnection.query(query, (err, rows) => {
     req.session.isLogin = true;
-    // isLogin = true;
     data = rows;
     res.render("homePageUser", {
       isLogin: req.session.isLogin,
       admin: false,
       datas: data,
-      coockie,
     });
-    console.log(coockie);
   });
 });
 
 // HOME PAGE USER
 app.get("/homePage-admin", (req, res) => {
-  const query = "SELECT * FROM tb_product ORDER BY id DESC";
+  const query = `SELECT tb_product.id,tb_product.name,description,photo,stock,price, tb_brand.name AS brand_name FROM tb_product INNER JOIN tb_brand ON brand_id = tb_brand.id ORDER BY tb_product.id DESC`;
+
   dbConnection.query(query, (err, rows) => {
     req.session.isLogin = true;
     data = rows;
-    // isLogin = true;
     res.render("homePageAdmin", {
       isLogin: req.session.isLogin,
       admin: true,
       datas: data,
-      coockie,
     });
   });
 });
@@ -151,6 +142,7 @@ app.get("/add-product", (req, res) => {
 app.post("/proses-addProduct", uploadFile("photo"), (req, res, next) => {
   let { name, description, price, stock, category, brand } = req.body;
   let photo = req.file.filename;
+
   let error = false;
 
   if (name.length === 0 || description.length === 0 || price.length === 0 || photo.length === 0 || stock.length === 0 || category.length === 0 || brand.length === 0) {
@@ -185,6 +177,8 @@ app.post("/proses-register", (req, res, next) => {
 
   if (email.length === 0 || password.length === 0 || address.length === 0 || status === "Choose Status...") {
     error = true;
+
+    // todo
     console.log("Please enter complete your data");
     res.render("register", {
       email,
@@ -214,7 +208,7 @@ app.get("/edit-product/(:id)", (req, res) => {
 
   dbConnection.query(query, (err, rows, field) => {
     if (err) throw err;
-    console.log(rows);
+    // todo
     res.render("edit", {
       isLogin: req.session.isLogin,
       admin: true,
@@ -225,7 +219,7 @@ app.get("/edit-product/(:id)", (req, res) => {
       photo: rows[0].photo,
       stock: rows[0].stock,
       category: rows[0].category_id,
-      brand: rows[0].brand_id,
+      brand: rows[0].brand_name,
     });
   });
 });
@@ -234,9 +228,12 @@ app.get("/edit-product/(:id)", (req, res) => {
 // todo
 app.post("/proses-edit/:id", uploadFile("photo"), (req, res, next) => {
   let id = req.params.id;
-  let { name, description, price, stock, category, brand } = req.body;
-  let photo = req.file.filename;
+  let { name, description, price, stock, category, brand, oldPhoto } = req.body;
+  let photo = oldPhoto;
 
+  if (req.file) {
+    photo = req.file.filename;
+  }
   let error = false;
 
   if (name.length === 0 || description.length === 0 || price.length === 0 || photo.length === 0 || stock.length === 0 || category.length === 0 || brand.length === 0) {
@@ -264,7 +261,6 @@ app.post("/proses-edit/:id", uploadFile("photo"), (req, res, next) => {
       update_at = NOW() 
       WHERE id = "${id}"`;
   dbConnection.query(query, (err, rows, field) => {
-    console.log(rows);
     if (err) throw err;
     res.redirect("/homePage-admin");
   });
